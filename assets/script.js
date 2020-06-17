@@ -1,5 +1,14 @@
 $(document).ready(function () {
-  // var APIkey= "62bc91b04494ffcca055cb79a046bbf8d";
+
+      var previousSearches = JSON.parse(Object.assign({}, window.localStorage).savedCity)
+      console.log(previousSearches);
+      for (let i = 0; i < previousSearches.length; i++) {
+        console.log(previousSearches[i]);
+        $("#pastSearchedCities").append(`<div class= 'card'>  <div class='card-body'> ` + previousSearches[i] +` </div> </div>`
+        );
+      }
+     
+
   var arrayOfCities = [];
 
   $("#newSearch").on("click", function (event) {
@@ -9,15 +18,14 @@ $(document).ready(function () {
     // console.log(searchCity);
     localStorage.setItem("savedCity", JSON.stringify(arrayOfCities));
     var getCity = JSON.parse(localStorage.getItem("savedCity"));
-    // console.log(getCity);
+    console.log(getCity);
     getCurrentForecast(searchCity);
   });
 
   function getCurrentForecast(userCity) {
     var queryURL =
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-      userCity +
-      "&units=imperial&appid=6728f835388fdeed53f52d240faa84ef";
+      "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&units=imperial&appid=6728f835388fdeed53f52d240faa84ef";
+
     $.ajax({
       url: queryURL,
       method: "GET",
@@ -27,13 +35,9 @@ $(document).ready(function () {
       console.log(response.main.temp);
       console.log(response.main.humidity);
       console.log(response.wind.speed);
-      //   console.log(response.weather.0.icon)
       console.log();
-    //   $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-      $(".cityName").append("<h1>" + response.name + " Weather Details</h1>")
-      $("#pastSearchedCities").append(
-        `<div class= 'card'>  <div class='card-body'> ` + userCity +` </div> </div>`
-      );
+
+    
     });
   }
 });
@@ -67,7 +71,6 @@ $(document).ready(function () {
     var queryURL =
       "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=QuGZkvsKagwpqRQFv5NFKOLa7BLWbAQR&q=" +
       searchTerm;
-​
     $.ajax({
       url: queryURL,
       method: "GET",
@@ -78,11 +81,10 @@ $(document).ready(function () {
         var headline = response.response.docs[i].headline.main;
         console.log(headline);
         var byline = response.response.docs[i].byline.original;
-​
         if (byline === null) {
           byline = "By New York Times";
         }
         console.log(byline);
-​
+
         $("#articles").append($("<h1>" + headline + "</h1>"));
         $("#articles").append($("<h3>" + byline + "</h3>")); */
