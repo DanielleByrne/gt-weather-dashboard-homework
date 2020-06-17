@@ -9,12 +9,52 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" src="./assets/style.css">
+    <link rel="stylesheet" src="./assets/style.css" />
     <title>Weather Dashboard</title>
   </head>
-  <body>
-      <h1>Test</h1>
-  </body>
+  <nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1" id="navbarText">Weather Dashboard</span>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="card">
+          <div class="card-header">
+            Search for a City: 
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-row align-items-left">
+                <div class="col-auto">
+                  <label class="sr-only" for="inlineFormInput">Search for A city</label>
+                  <input
+                    type="text"
+                    class="form-control mb-2"
+                    id="searchCity"
+                    placeholder="Atlanta"
+                  />
+                </div>
+                <div class="col-auto">
+                  <button id="newSearch" type="submit" class="btn btn-primary mb-2">Search</button>
+                  <div id="pastSearchedCities">
+
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-8">
+        <div class="card">
+          <div class="card-body">
+            Display Weather
+          </div>
+
+    </div>
+  </div>
+  <body></body>
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="./assets/script.js"></script>
 </html>
