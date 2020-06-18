@@ -21,7 +21,7 @@ Clone the repository from GitHub and open the index.html file in a browser windo
 ## Usage 
 
 
-![]()
+![WeatherResults](assets/weatherResults.jpeg)
 
 
 
@@ -30,7 +30,9 @@ Clone the repository from GitHub and open the index.html file in a browser windo
 This was a project I completed as a homework assignment in my Georgia Tech Coding Bootcamp. This application uses bootstrap for styling, as well as jQuery, and OpenWeather API to provide the weather information.
 
 [Link to Bootstrap] (https://getbootstrap.com/)
+
 [Link to jQuery] (https://code.jquery.com/)
+
 [Link to OpenWeather] (https://openweathermap.org/)
 
 

@@ -40,19 +40,20 @@ $(document).ready(function () {
     
     var longitudeEl = forecastResponse.coord.lon
     var latitudeEl = forecastResponse.coord.lat
-    // console.log(longitudeEl);
-    // console.log(latitudeEl);
-      
+
+      //  ajax call for the UV Index 
+
       var UVqueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + latitudeEl + "&lon=" + longitudeEl + "&appid=6728f835388fdeed53f52d240faa84ef"
       $.ajax({
         url: UVqueryURL,
         method: "GET",
       }).then(function(UVresponse){
-        console.log(UVresponse.value);
+        // console.log(UVresponse.value);
         var UVindex = UVresponse.value
         $("#UVtext").text("UV Index:" + UVindex);
-//not sure why the color get's stuck going from red to green but not always green to red
-      if(UVindex < 3){
+
+        // changing the color of the UV index 
+        if(UVindex < 3){
         $("#UVtext").addClass("badge badge-success");
       }
       else if(UVindex > 7){
@@ -63,36 +64,73 @@ $(document).ready(function () {
       }
       })
 
+      // ajax call for the 5 day forecast 
 
-      var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCity + "&appid=6728f835388fdeed53f52d240faa84ef"
+      var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCity + "&units=imperial&appid=6728f835388fdeed53f52d240faa84ef"
       $.ajax({
         url: fiveDayURL,
         method: "GET",
-      }).then(function(fiveDayResponse){
-        console.log(fiveDayResponse);
+      }).then(function(fiveDayResponse){      
+        //day one card variables 
+        var dayOneDate = fiveDayResponse.list[0].dt_txt;
+        var dayOneTemp = fiveDayResponse.list[0].main.temp;
+        var dayOneHumidity = fiveDayResponse.list[0].main.humidity;
+        console.log(dayOneDate);
+        console.log(dayOneTemp);
+        console.log(dayOneHumidity); 
+        $("#date1").text(dayOneDate);
+        $("#temp1").text("Temp:" + Math.round(dayOneTemp)+ String.fromCharCode(176)+ "F");
+        $("#hum1").text("Humidity:" + dayOneHumidity);
+
+        //day two card variables 
+        var dayTwoDate = fiveDayResponse.list[14].dt_txt;
+        var dayTwoTemp = fiveDayResponse.list[14].main.temp;
+        var dayTwoHumidity = fiveDayResponse.list[14].main.humidity;
+        console.log(fiveDayResponse)
+        console.log(dayTwoDate);
+        console.log(dayTwoTemp);
+        console.log(dayTwoHumidity); 
+        $("#date2").text(dayTwoDate);
+        $("#temp2").text("Temp:" + Math.round(dayTwoTemp)+ String.fromCharCode(176)+ "F");
+        $("#hum2").text("Humidity:" + dayTwoHumidity);
+
+        // day three card variables 
+        var dayThreeDate = fiveDayResponse.list[22].dt_txt;
+        var dayThreeTemp = fiveDayResponse.list[22].main.temp;
+        var dayThreeHumidity = fiveDayResponse.list[22].main.humidity;
+        console.log(fiveDayResponse)
+        console.log(dayThreeDate);
+        console.log(dayThreeTemp);
+        console.log(dayThreeHumidity); 
+        $("#date3").text(dayThreeDate);
+        $("#temp3").text("Temp:" + Math.round(dayThreeTemp)+ String.fromCharCode(176)+ "F");
+        $("#hum3").text("Humidity:" + dayThreeHumidity);
+
+        // day four card variables 
+        var dayFourDate = fiveDayResponse.list[30].dt_txt;
+        var dayFourTemp = fiveDayResponse.list[30].main.temp;
+        var dayFourHumidity = fiveDayResponse.list[30].main.humidity;
+        console.log(fiveDayResponse)
+        console.log(dayFourDate);
+        console.log(dayFourTemp);
+        console.log(dayFourHumidity); 
+        $("#date4").text(dayFourDate);
+        $("#temp4").text("Temp:" + Math.round(dayFourTemp)+ String.fromCharCode(176)+ "F");
+        $("#hum4").text("Humidity:" + dayFourHumidity);
+
+        // day five card variables 
+        var dayFiveDate = fiveDayResponse.list[38].dt_txt;
+        var dayFiveTemp = fiveDayResponse.list[38].main.temp;
+        var dayFiveHumidity = fiveDayResponse.list[38].main.humidity;
+        console.log(fiveDayResponse)
+        console.log(dayFiveDate);
+        console.log(dayFiveTemp);
+        console.log(dayFiveHumidity); 
+        $("#date5").text(dayFiveDate);
+        $("#temp5").text("Temp:" + Math.round(dayFiveTemp)+ String.fromCharCode(176)+ "F");
+        $("#hum5").text("Humidity:" + dayFiveHumidity);
       })
-     
-    
     });
   }
-
 });
 
-// GIVEN a weather dashboard with form inputs
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
-
-// WHEN I open the weather dashboard
-// THEN I am presented with the last searched city forecast
