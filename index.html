@@ -15,45 +15,102 @@
   <nav class="navbar navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1" id="navbarText">Weather Dashboard</span>
   </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-4">
-        <div class="card">
-          <div class="card-header">
-            Search for a City: 
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="form-row align-items-left">
-                <div class="col-auto">
-                  <label class="sr-only" for="inlineFormInput">Search for A city</label>
-                  <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="searchCity"
-                    placeholder="Atlanta"
-                  />
-                </div>
-                <div class="col-auto">
-                  <button id="newSearch" type="submit" class="btn btn-primary mb-2">Search</button>
-                  <div id="pastSearchedCities">
-
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="card">
+            <div class="card-header">
+              Search for a City:
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row align-items-left">
+                  <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInput"
+                      >Search for A city</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control mb-2"
+                      id="searchCity"
+                      placeholder="Atlanta"
+                    />
+                  </div>
+                  <div class="col-auto">
+                    <button
+                      id="newSearch"
+                      type="submit"
+                      class="btn btn-primary mb-2"
+                    >
+                      Search
+                    </button>
+                    <div id="pastSearchedCities"></div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-
-      </div>
-      <div class="col-8">
-        <div class="card">
-          <div class="card-body" id="cityName">
-            Display Weather
+        <div class="col-9">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-text" id="cityName">Atlanta</h1>
+              <h5 class="card-text" id="tempText">Temperature:</h5>
+              <h5 class="card-text" id="humidityText">Humidity:</h5>
+              <h5 class="card-text" id="windText">Wind Speed:</h5>
+              <span class="badge badge-success">UV Index:</span>
+            </div>
           </div>
+          <div class="row">
+            <h2>5 Day Forecast</h2>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <div class="card text-white bg-primary">
+                <div>
+                  <h6 class="card-title">Primary card title</h6>
+                  <p class="card-text">Temp</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card text-white bg-primary">
+                <div>
+                  <h6 class="card-title">Primary card title</h6>
+                  <p class="card-text">Temp</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card text-white bg-primary">
+                <div>
+                  <h6 class="card-title">Primary card title</h6>
+                  <p class="card-text">Temp</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card text-white bg-primary">
+                <div>
+                  <h6 class="card-title">Primary card title</h6>
+                  <p class="card-text">Temp</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="card text-white bg-primary">
+                <div>
+                  <h6 class="card-title">Primary card title</h6>
+                  <p class="card-text">Temp</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <body></body>
+  </body>
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="./assets/script.js"></script>
 </html>

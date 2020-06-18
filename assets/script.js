@@ -11,11 +11,11 @@ $(document).ready(function () {
 
   var arrayOfCities = [];
 
+
   $("#newSearch").on("click", function (event) {
     event.preventDefault();
     var searchCity = $("#searchCity").val();
     arrayOfCities.push(searchCity);
-    // console.log(searchCity);
     localStorage.setItem("savedCity", JSON.stringify(arrayOfCities));
     var getCity = JSON.parse(localStorage.getItem("savedCity"));
     console.log(getCity);
@@ -23,23 +23,43 @@ $(document).ready(function () {
   });
 
   function getCurrentForecast(userCity) {
-    var queryURL =
-      "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&units=imperial&appid=6728f835388fdeed53f52d240faa84ef";
+    var forecastqueryURL ="https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&units=imperial&appid=6728f835388fdeed53f52d240faa84ef";
+    
 
     $.ajax({
-      url: queryURL,
+      url: forecastqueryURL,
       method: "GET",
-    }).then(function (response) {
-      console.log(response);
-      console.log(response.name);
-      console.log(response.main.temp);
-      console.log(response.main.humidity);
-      console.log(response.wind.speed);
-      console.log();
+    }).then(function (forecastResponse) {
+      console.log(forecastResponse);
+      console.log(forecastResponse.name);
+      console.log(forecastResponse.main.temp);
+      console.log(forecastResponse.main.humidity);
+      console.log(forecastResponse.wind.speed);
+    var longitudeEl = forecastResponse.coord.lon
+    var latitudeEl = forecastResponse.coord.lat
+    console.log(longitudeEl);
+    console.log(latitudeEl);
+      
+      var UVqueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + latitudeEl + "&lon=" + longitudeEl + "&appid=6728f835388fdeed53f52d240faa84ef"
+      $.ajax({
+        url: UVqueryURL,
+        method: "GET",
+      }).then(function(UVresponse){
+        console.log(UVresponse.value);
+      })
 
+      var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCity + "&appid=6728f835388fdeed53f52d240faa84ef"
+      $.ajax({
+        url: fiveDayURL,
+        method: "GET",
+      }).then(function(fiveDayResponse){
+        console.log(fiveDayResponse);
+      })
+     
     
     });
   }
+
 });
 
 // GIVEN a weather dashboard with form inputs
